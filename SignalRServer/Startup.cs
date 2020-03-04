@@ -39,7 +39,7 @@ namespace SignalRServer
             }
 
             app.UseCors(builder => builder
-                       .WithOrigins("https://suaidade.azurewebsites.net/")
+                       .WithOrigins("*")
                        .AllowAnyMethod()
                        .AllowAnyHeader()
                        .AllowCredentials());
