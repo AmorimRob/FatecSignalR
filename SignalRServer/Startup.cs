@@ -33,15 +33,18 @@ namespace SignalRServer
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(options => options.AllowAnyOrigin());
-            app.UseHttpsRedirection();
+            app.UseCors(builder => builder
+                       .AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader()
+                       .AllowCredentials());
+
+            app.UseMvc();
 
             app.UseSignalR(routes =>
             {
                 routes.MapHub<FaceHub>("/faceHub");
             });
-
-            app.UseMvc();
         }
     }
 }
