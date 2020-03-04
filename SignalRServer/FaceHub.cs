@@ -8,7 +8,7 @@ namespace SignalRServer
 {
     public class FaceHub : Hub
     {
-        public async Task EnviarPedido(Face face) =>
-            await Clients.All.SendAsync("IdentificarFace", face);
+        public async Task EnviarIdade(string idade) =>
+            await Clients.All.SendAsync("IdentificarIdade", idade);
     }
 }
