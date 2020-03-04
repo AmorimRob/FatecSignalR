@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,20 +33,15 @@ namespace SignalRServer
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(builder => builder
-                       .WithOrigins("*")
-                       .AllowAnyMethod()
-                       .AllowAnyHeader()
-                       .AllowCredentials());
-
-            app.UseMvc();
+            app.UseCors(options => options.AllowAnyOrigin());
+            app.UseHttpsRedirection();
 
             app.UseSignalR(routes =>
             {
                 routes.MapHub<FaceHub>("/faceHub");
             });
 
-            
+            app.UseMvc();
         }
     }
 }
